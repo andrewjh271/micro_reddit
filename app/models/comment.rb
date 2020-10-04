@@ -1,21 +1,19 @@
 # == Schema Information
 #
-# Table name: posts
+# Table name: comments
 #
 #  id         :integer          not null, primary key
-#  title      :string
 #  body       :text
 #  author_id  :integer          not null
+#  post_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Post < ApplicationRecord
-  validates :title, presence: true, uniqueness: true
+class Comment < ApplicationRecord
   validates :body, presence: true
 
   belongs_to :author,
     class_name: :User
-
-  has_many :comments,
-    dependent: :destroy
+    
+  belongs_to :post
 end
